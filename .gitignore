@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+./test/java/com/example/demo2/TaskControllerTest.java
+./test/java/com/example/demo2/ArchivControllerTest.java
