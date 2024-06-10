@@ -13,6 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.example.demo2.controller.TaskController;
+import com.example.demo2.domain.Tasks;
+import com.example.demo2.domain.Users;
+import com.example.demo2.repository.TaskRepository;
+
 @WebMvcTest(TaskController.class)
 public class TaskControllerTests {
 

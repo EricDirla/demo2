@@ -1,4 +1,4 @@
-package com.example.demo2;
+package com.example.demo2.controller;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.demo2.domain.Tasks;
+import com.example.demo2.domain.Users;
+import com.example.demo2.repository.TaskRepository;
 
 @Controller
 @RequestMapping(path = "/task")

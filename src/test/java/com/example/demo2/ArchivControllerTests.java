@@ -13,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.example.demo2.controller.ArchivController;
+import com.example.demo2.domain.Archiv;
+import com.example.demo2.repository.ArchivRepository;
+
 @WebMvcTest(ArchivController.class)
 public class ArchivControllerTests {
 
