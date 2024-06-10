@@ -8,7 +8,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDateTime;
-import com.example.demo2.Users;
 
 @Entity
 public class Tasks {
