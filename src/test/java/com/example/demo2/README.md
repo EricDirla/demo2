@@ -1,46 +1,53 @@
-# Evaluation der Integration von ArchUnit in ein Großprojekt
+# Evaluation der Integration von ArchUnit in unser Großprojekt
 
 ## Einleitung
-ArchUnit ist eine Java-Bibliothek zur statischen Analyse von Projekten, die es ermöglicht, Architekturregeln zu definieren und durchzusetzen. Ziel dieser Evaluation ist es, die Vor- und Nachteile der Integration von ArchUnit in ein großes Projekt abzuwägen und eine fundierte Entscheidung zu treffen.
+ArchUnit ist eine Java-Bibliothek, die statische Analyse ermöglicht. Wir können damit Architekturregeln definieren und durchsetzen. Ziel dieser Evaluation ist es, die Vor- und Nachteile der Integration von ArchUnit in unser Projekt abzuwägen, um eine fundierte Entscheidung zu treffen.
 
 ## Vorteile und Nachteile
 
 | **Vorteile**                                      | **Nachteile**                                       |
 |---------------------------------------------------|-----------------------------------------------------|
 | **Automatisierte Architektursicherung**           | **Zusätzlicher Initialaufwand**                     |
-| ArchUnit ermöglicht die Definition und Durchsetzung von Architekturregeln im Code, was dazu beiträgt, die Konsistenz und Wartbarkeit der Software zu gewährleisten. | Die Einrichtung und Konfiguration von ArchUnit erfordert Zeit und Aufwand, insbesondere in großen Projekten. |
+| Konsistenz und Wartbarkeit der Software durch klare Regeln. | Zeit und Aufwand für Einrichtung, besonders in großen Projekten. |
 | **Früherkennung von Architekturverletzungen**     | **Lernkurve**                                       |
-| Durch automatisierte Tests können Architekturverletzungen frühzeitig im Entwicklungsprozess erkannt und behoben werden. | Entwickler müssen sich mit ArchUnit und seinen Möglichkeiten vertraut machen, was eine gewisse Lernzeit erfordert. |
-| **Verbesserte Dokumentation und Transparenz**     | **Potentielle Performance-Einbußen**                |
-| Architekturregeln in Codeform dienen als lebendige Dokumentation der Systemarchitektur und erhöhen die Transparenz. | Bei sehr großen Projekten kann die Laufzeit der ArchUnit-Tests die Build-Zeit verlängern. |
-| **Förderung von Best Practices**                  | **Mögliche Komplexität in der Regelverwaltung**     |
-| ArchUnit kann dazu beitragen, bewährte Methoden und Standards innerhalb des Entwicklungsteams zu fördern. | Bei einer großen Anzahl von Regeln kann die Verwaltung und Wartung dieser Regeln komplex werden. |
+| Fehler früh im Entwicklungsprozess erkennen und beheben. | Entwickler müssen sich einarbeiten. |
+| **Transparente Dokumentation**                    | **Performance-Einbußen möglich**                    |
+| Regeln als lebendige Dokumentation erhöhen Transparenz. | In großen Projekten längere Build-Zeiten. |
+| **Förderung von Best Practices**                  | **Komplexe Regelverwaltung**                        |
+| Standards und bewährte Methoden im Team fördern. | Viele Regeln erhöhen Verwaltungsaufwand. |
 
 ## Einsatzmöglichkeiten
-1. **Architekturkonformität sicherstellen**: Durch Definition von Regeln, die sicherstellen, dass bestimmte Schichten nur von erlaubten anderen Schichten abhängig sind (z.B. Controller -> Service -> Repository).
-2. **Vermeidung von zyklischen Abhängigkeiten**: Überprüfung und Vermeidung von zyklischen Abhängigkeiten zwischen Paketen oder Klassen.
-3. **Einhaltung von Namenskonventionen**: Sicherstellen, dass Klassen und Pakete bestimmten Namenskonventionen folgen.
-4. **Modularitätsprüfung**: Überprüfung, dass Module nur definierte Abhängigkeiten zu anderen Modulen haben.
+1. **Architekturkonformität sicherstellen**: Regeln definieren, um Abhängigkeitsstrukturen korrekt zu halten.
+2. **Vermeidung von zyklischen Abhängigkeiten**: Zyklische Abhängigkeiten zwischen Paketen oder Klassen vermeiden.
+3. **Einhaltung von Namenskonventionen**: Sicherstellen, dass Namenskonventionen eingehalten werden.
+4. **Modularitätsprüfung**: Überprüfen, dass nur definierte Abhängigkeiten zwischen Modulen bestehen.
 
-## Auflistung der durchgeführten Tests
+## Durchgeführte Tests
 
 1. **Controller im Controller-Paket:**
-   - **Testname:** `controllersShouldResideInControllerPackage`
-   - **Beschreibung:** Prüft, ob alle Klassen, die mit `@Controller` annotiert sind, im Paket `com.example.demo2..controller..` liegen.
+   - **Test:** `controllersShouldResideInControllerPackage`
+   - **Beschreibung:** Prüft, ob `@Controller`-Klassen im Paket `com.example.demo2..controller..` liegen.
 
 2. **Repositories im Repository-Paket:**
-   - **Testname:** `repositoriesShouldResideInRepositoryPackage`
-   - **Beschreibung:** Prüft, ob alle Klassen, die mit `@Repository` annotiert sind, im Paket `com.example.demo2..repository..` liegen.
+   - **Test:** `repositoriesShouldResideInRepositoryPackage`
+   - **Beschreibung:** Prüft, ob `@Repository`-Klassen im Paket `com.example.demo2..repository..` liegen.
 
 3. **Entitäten im Domain-Paket:**
-   - **Testname:** `entitiesShouldResideInDomainPackage`
-   - **Beschreibung:** Prüft, ob alle Klassen, die mit `@Entity` annotiert sind, im Paket `com.example.demo2..domain..` liegen.
+   - **Test:** `entitiesShouldResideInDomainPackage`
+   - **Beschreibung:** Prüft, ob `@Entity`-Klassen im Paket `com.example.demo2..domain..` liegen.
 
 4. **Zyklische Abhängigkeiten zwischen Paketen:**
-   - **Testname:** `noCyclicDependenciesBetweenPackages`
-   - **Beschreibung:** Prüft, ob keine zyklischen Abhängigkeiten zwischen den Paketen innerhalb von `com.example.demo2` bestehen.
+   - **Test:** `noCyclicDependenciesBetweenPackages`
+   - **Beschreibung:** Prüft, ob keine zyklischen Abhängigkeiten in `com.example.demo2` bestehen.
 
 ## Fazit
-Die Integration von ArchUnit in ein großes Projekt bietet zahlreiche Vorteile, insbesondere im Hinblick auf die Sicherstellung der Architekturkonformität und die Förderung von Best Practices. Der zusätzliche Initialaufwand und die Lernkurve können durch die langfristigen Vorteile in Bezug auf Wartbarkeit und Qualität der Software gerechtfertigt werden. Es ist jedoch wichtig, die Komplexität der Regelverwaltung und mögliche Performance-Einbußen zu berücksichtigen.
+ArchUnit unterstützt unser Team durch:
+- Automatisierte Architektursicherung und Transparenz
+- Frühe Fehlererkennung
+- Förderung von Best Practices
 
-Insgesamt ist ArchUnit eine wertvolle Ergänzung für Teams, die großen Wert auf eine saubere und wartbare Architektur legen. Die Entscheidung zur Integration sollte jedoch auf einer Abwägung der spezifischen Anforderungen und Ressourcen des Projekts basieren.
+Die Herausforderungen umfassen:
+- Initialaufwand und Lernkurve
+- Mögliche Performance-Einbußen und komplexe Regelverwaltung
+
+Insgesamt bietet ArchUnit viele Vorteile für unser Projekt, die den anfänglichen Aufwand rechtfertigen können. Es gibt eigentlich keine wirklichen Nachteile, welche begründen könnten, warum wir ArchUnit nicht in unserem Projekt integrieren sollten. Alleine der Punkt, dass Best Practices quasi automatisch gesichert werden, ist genug Vorteil. Individuelle Testerstellung ist auch möglich (hier nicht angewandt), sollte bei größeren Testfällen dann auch angewandt werden.
