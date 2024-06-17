@@ -56,7 +56,7 @@ Insgesamt bietet ArchUnit viele Vorteile für unser Projekt, die den anfänglich
 
 Projektstruktur visualisiert in einem UML-Diagramm:
 ![UML-Diagramm der Projektstruktur](https://github.com/EricDirla/demo2/blob/master/architecture.png)
-Generiert durch ![PlantUML-Generator Maven-Plugin](https://github.com/devlauer/plantuml-generator)
+Generiert durch [PlantUML-Generator Maven-Plugin](https://github.com/devlauer/plantuml-generator)
 
 PlantUML kann genutzt werden, um die Projektstruktur in UML-Diagramme zu visualisieren. Hierbei werden die Klassen, Repositories und Controllers in verschiedenen Paketen dargestellt. Die Architektur kann auch in einer einzelnen Datei gespeichert werden, um sie später in einem Projekt zu verwenden (architecture.puml).
 
