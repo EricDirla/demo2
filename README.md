@@ -6,6 +6,7 @@
 -JPA<br>
 -Spring Data JPA<br>
 -Spring Boot<br>
+-ArchUnit<br>
 
 ### Frontend-Logik
 
