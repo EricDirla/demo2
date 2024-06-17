@@ -54,4 +54,10 @@ Insgesamt bietet ArchUnit viele Vorteile für unser Projekt, die den anfänglich
 
 ## Einsatz von PlantUML
 
+Projektstruktur visualisiert in einem UML-Diagramm:
 ![UML-Diagramm der Projektstruktur](https://github.com/EricDirla/demo2/blob/master/architecture.png)
+Generiert durch ![PlantUML-Generator Maven-Plugin](https://github.com/devlauer/plantuml-generator)
+
+PlantUML kann genutzt werden, um die Projektstruktur in UML-Diagramme zu visualisieren. Hierbei werden die Klassen, Repositories und Controllers in verschiedenen Paketen dargestellt. Die Architektur kann auch in einer einzelnen Datei gespeichert werden, um sie später in einem Projekt zu verwenden (architecture.puml).
+
+Zum Testen der Architektur würde ich davon absehen, da PlantUML-Dateien keine semantischen Informationen wie z.B. Spring Boot Annotationen enthält. Mit regulären ArchUnit-Tests kann die Architektur in hinsicht auf die Funktionsweise der Komponenten in der Codebase geprüft werden, mit PlantUML können bloß die Namen der Klassen und deren Pakete geprüft werden (was dem Sinn von Architektursicherung widerspricht).
