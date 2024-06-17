@@ -54,4 +54,4 @@ Insgesamt bietet ArchUnit viele Vorteile für unser Projekt, die den anfänglich
 
 ## Einsatz von PlantUML
 
-![UML-Diagramm der Projektstruktur](architecture.png)
+![UML-Diagramm der Projektstruktur](https://github.com/EricDirla/demo2/blob/master/architecture.png)
