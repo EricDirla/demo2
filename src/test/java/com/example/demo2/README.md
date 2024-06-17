@@ -51,3 +51,7 @@ Die Herausforderungen umfassen:
 - Mögliche Performance-Einbußen und komplexe Regelverwaltung
 
 Insgesamt bietet ArchUnit viele Vorteile für unser Projekt, die den anfänglichen Aufwand rechtfertigen können. Es gibt eigentlich keine wirklichen Nachteile, welche begründen könnten, warum wir ArchUnit nicht in unserem Projekt integrieren sollten. Alleine der Punkt, dass Best Practices quasi automatisch gesichert werden, ist genug Vorteil. Individuelle Testerstellung ist auch möglich (hier nicht angewandt), sollte bei größeren Testfällen dann auch angewandt werden.
+
+## Einsatz von PlantUML
+
+![](architecture.png)
