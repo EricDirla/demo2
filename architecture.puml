@@ -1,159 +1,114 @@
 @startuml architecture
 
-package com.example.demo2 {
-  class Demo2Application
-
-  package config {
-    class WebConfig
-  }
-
-  package controller {
-    class ArchivController {
-      +ArchivRepository
-      +addNewArchiv(Integer task_id, Integer user_id, String task_name, String description, LocalDateTime due_date, Boolean is_completed, LocalDateTime archived_at)
-      +getAllArchiv()
-      +deleteArchiv(Integer task_id)
-      +updateArchiv(Integer task_id, Integer user_id, String task_name, String description, LocalDateTime due_date, Boolean is_completed, LocalDateTime archived_at)
-    }
-    class TaskController {
-      +TaskRepository
-      +addNewTask(Users user, String task_name, String description, LocalDateTime due_date, Boolean is_completed)
-      +getAllTasks()
-      +deleteTask(Integer task_id)
-      +updateTask(Integer task_id, String task_name, String description, LocalDateTime due_date, Boolean is_completed)
-    }
-    class UserController {
-      +UserRepository
-      +addNewUser(String username, String password, Integer user_id)
-      +getAllUsers()
-      +deleteUser(Integer user_id)
-      +updateUser(Integer user_id, String username, String password)
-      +getUserByUsername(String username)
-    }
-  }
-
-  package domain {
-    class Archiv {
-      +Integer archiv_id
-      +Integer task_id
-      +Integer user_id
-      +String task_name
-      +String description
-      +LocalDateTime due_date
-      +Boolean is_completed
-      +LocalDateTime archived_at
-      +getArchivId()
-      +setArchivId(Integer archiv_id)
-      +getTaskId()
-      +setTaskId(Integer task_id)
-      +getUserId()
-      +setUserId(Integer user_id)
-      +getTaskName()
-      +setTaskName(String task_name)
-      +getDescription()
-      +setDescription(String description)
-      +getDueDate()
-      +setDueDate(LocalDateTime due_date)
-      +getIsCompleted()
-      +setIsCompleted(Boolean is_completed)
-      +getArchivedAt()
-      +setArchivedAt(LocalDateTime archived_at)
-    }
-    class Tasks {
-      +Integer task_id
-      +Users user
-      +String task_name
-      +String description
-      +LocalDateTime due_date
-      +Boolean is_completed
-      +getTaskId()
-      +setTaskId(Integer task_id)
-      +getUser()
-      +setUser(Users user)
-      +getTaskName()
-      +setTaskName(String task_name)
-      +getDescription()
-      +setDescription(String description)
-      +getDueDate()
-      +setDueDate(LocalDateTime due_date)
-      +getIsCompleted()
-      +setIsCompleted(Boolean is_completed)
-    }
-    class Users {
-      +Integer user_id
-      +String username
-      +String password
-      +getId()
-      +setId(Integer user_id)
-      +getName()
-      +setName(String username)
-      +getPassword()
-      +setPassword(String password)
-    }
-  }
-
-  package repository {
-    class ArchivRepository{}
-    class TaskRepository{}
-    class UserRepository{}
-  }
+class com.example.demo2.config.WebConfig {
+	{method} +corsConfigurer () : org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 }
 
-package com.example.demo2.test {
-  class ArchitectureTests
-  class ArchivControllerTests {
-    +setUp()
-    +testAddNewArchiv()
-    +testGetAllArchiv()
-    +testDeleteArchiv()
-    +testUpdateArchiv()
-  }
-  class TaskControllerTests {
-    +setUp()
-    +testAddNewTask()
-    +testGetAllTasks()
-    +testDeleteTask()
-    +testUpdateTask()
-  }
-  class UserControllerTests {
-    +setUp()
-    +testAddNewUser()
-    +testGetAllUsers()
-    +testDeleteUser()
-    +testUpdateUser()
-    +testGetUserByUsername()
-    +testGetUserByUsernameNotFound()
-  }
-  class DatabaseConnectionTests {
-    +contextLoads()
-    +testDatabaseQuery()
-  }
+
+class com.example.demo2.config.WebConfig$1 {
+	{method} +addCorsMappings ( paramCorsRegistry1 : org.springframework.web.servlet.config.annotation.CorsRegistry ) : void
 }
 
-' Beziehungen zwischen Controllern und Repositories
-controller.ArchivController --> repository.ArchivRepository
-controller.TaskController --> repository.TaskRepository
-controller.UserController --> repository.UserRepository
 
-' Beziehungen zwischen Domänenklassen und Repositories
-repository.ArchivRepository --> domain.Archiv
-repository.TaskRepository --> domain.Tasks
-repository.UserRepository --> domain.Users
+class com.example.demo2.controller.ArchivController {
+	{method} +addNewArchiv ( paramInteger1 : Integer , paramInteger2 : Integer , paramString3 : String , paramString4 : String , paramLocalDateTime5 : java.time.LocalDateTime , paramBoolean6 : Boolean , paramLocalDateTime7 : java.time.LocalDateTime ) : String
+	{method} +deleteArchiv ( paramInteger1 : Integer ) : String
+	{method} +getAllArchiv () : Iterable
+	{method} +updateArchiv ( paramInteger1 : Integer , paramInteger2 : Integer , paramString3 : String , paramString4 : String , paramLocalDateTime5 : java.time.LocalDateTime , paramBoolean6 : Boolean , paramLocalDateTime7 : java.time.LocalDateTime ) : String
+}
 
-' Beziehungen zwischen Controllern und Domänenklassen
-controller.ArchivController --> domain.Archiv
-controller.TaskController --> domain.Tasks
-controller.UserController --> domain.Users
 
-' Beziehungen zwischen Testklassen und den getesteten Klassen
-com.example.demo2.test.ArchivControllerTests --> controller.ArchivController
-com.example.demo2.test.TaskControllerTests --> controller.TaskController
-com.example.demo2.test.UserControllerTests --> controller.UserController
-com.example.demo2.test.ArchitectureTests --> repository.ArchivRepository
-com.example.demo2.test.ArchitectureTests --> repository.TaskRepository
-com.example.demo2.test.ArchitectureTests --> repository.UserRepository
-com.example.demo2.test.ArchitectureTests --> domain.Archiv
-com.example.demo2.test.ArchitectureTests --> domain.Tasks
-com.example.demo2.test.ArchitectureTests --> domain.Users
+class com.example.demo2.controller.TaskController {
+	{method} +addNewTask ( paramUsers1 : com.example.demo2.domain.Users , paramString2 : String , paramString3 : String , paramLocalDateTime4 : java.time.LocalDateTime , paramBoolean5 : Boolean ) : String
+	{method} +deleteTask ( paramInteger1 : Integer ) : String
+	{method} +getAllTasks () : Iterable
+	{method} +updateTask ( paramInteger1 : Integer , paramString2 : String , paramString3 : String , paramLocalDateTime4 : java.time.LocalDateTime , paramBoolean5 : Boolean ) : String
+}
+
+
+class com.example.demo2.controller.UserController {
+	{method} +addNewUser ( paramString1 : String , paramString2 : String , paramInteger3 : Integer ) : String
+	{method} +deleteUser ( paramInteger1 : Integer ) : String
+	{method} +getAllUsers () : Iterable
+	{method} +getUserByUsername ( paramString1 : String ) : com.example.demo2.domain.Users
+	{method}  {static} -lambda$getUserByUsername$0 ( paramString1 : String ) : RuntimeException
+	{method} +updateUser ( paramInteger1 : Integer , paramString2 : String , paramString3 : String ) : String
+}
+
+
+class com.example.demo2.domain.Archiv {
+	{field} -archiv_id : Integer
+	{field} -archived_at : java.time.LocalDateTime
+	{field} +description : String
+	{field} -due_date : java.time.LocalDateTime
+	{field} -is_completed : Boolean
+	{field} -task_id : Integer
+	{field} -task_name : String
+	{field} -user_id : Integer
+	{method} +getArchivId () : Integer
+	{method} +getArchivedAt () : java.time.LocalDateTime
+	{method} +getDueDate () : java.time.LocalDateTime
+	{method} +getIsCompleted () : Boolean
+	{method} +getTaskId () : Integer
+	{method} +getTaskName () : String
+	{method} +getUserId () : Integer
+	{method} +setArchivId ( paramInteger1 : Integer ) : void
+	{method} +setArchivedAt ( paramLocalDateTime1 : java.time.LocalDateTime ) : void
+	{method} +setDueDate ( paramLocalDateTime1 : java.time.LocalDateTime ) : void
+	{method} +setIsCompleted ( paramBoolean1 : Boolean ) : void
+	{method} +setTaskId ( paramInteger1 : Integer ) : void
+	{method} +setTaskName ( paramString1 : String ) : void
+	{method} +setUserId ( paramInteger1 : Integer ) : void
+}
+
+
+class com.example.demo2.domain.Tasks {
+	{field} +description : String
+	{field} -due_date : java.time.LocalDateTime
+	{field} -is_completed : Boolean
+	{field} -task_id : Integer
+	{field} -task_name : String
+	{method} +getDueDate () : java.time.LocalDateTime
+	{method} +getIsCompleted () : Boolean
+	{method} +getTaskId () : Integer
+	{method} +getTaskName () : String
+	{method} +setDueDate ( paramLocalDateTime1 : java.time.LocalDateTime ) : void
+	{method} +setIsCompleted ( paramBoolean1 : Boolean ) : void
+	{method} +setTaskId ( paramInteger1 : Integer ) : void
+	{method} +setTaskName ( paramString1 : String ) : void
+}
+
+
+class com.example.demo2.domain.Users {
+	{field} +password : String
+	{field} -user_id : Integer
+	{field} -username : String
+	{method} +getId () : Integer
+	{method} +getName () : String
+	{method} +setId ( paramInteger1 : Integer ) : void
+	{method} +setName ( paramString1 : String ) : void
+}
+
+
+interface com.example.demo2.repository.ArchivRepository {
+}
+
+
+interface com.example.demo2.repository.TaskRepository {
+}
+
+
+interface com.example.demo2.repository.UserRepository {
+	{method}  {abstract} +findByUsername ( paramString1 : String ) : java.util.Optional
+}
+
+
+
+
+com.example.demo2.controller.ArchivController -->  com.example.demo2.repository.ArchivRepository : archivRepository
+com.example.demo2.controller.TaskController -->  com.example.demo2.repository.TaskRepository : taskRepository
+com.example.demo2.controller.UserController -->  com.example.demo2.repository.UserRepository : userRepository
+com.example.demo2.domain.Tasks -->  com.example.demo2.domain.Users : user
+
 
 @enduml

@@ -2,6 +2,9 @@ package com.example.demo2;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
+import com.tngtech.archunit.lang.ArchRule;
+import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAnyPackage;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Controller;
@@ -48,6 +51,32 @@ public class ArchitectureTests {
         slices().matching("com.example.demo2.(*)..")
             .should().beFreeOfCycles()
             .check(importedClasses);
+    }
+
+    @Test
+    public void controllersShouldOnlyUseOtherLayers() {
+        ArchRule rule = classes().that().areAnnotatedWith(Controller.class)
+                .should().onlyDependOnClassesThat(
+                        resideInAnyPackage("java..","org.springframework..",
+                                "com.example.demo2.domain..", "com.example.demo2.repository.."));
+        rule.check(importedClasses);
+    }
+
+    @Test
+    public void repositoriesShouldOnlyUseOtherLayers() {
+        ArchRule rule = classes().that().areAnnotatedWith(Repository.class)
+                .should().onlyDependOnClassesThat(
+                        resideInAnyPackage("java..","org.springframework..",
+                                "com.example.demo2.domain.."));
+        rule.check(importedClasses);
+    }
+
+    @Test
+    public void domainClassesShouldOnlyUseOtherLayers() {
+        ArchRule rule = classes().that().areAnnotatedWith(Entity.class)
+                .should().onlyDependOnClassesThat(
+                        resideInAnyPackage("java..","jakarta..", "com.example.demo2.domain.."));
+        rule.check(importedClasses);
     }
 
 }
