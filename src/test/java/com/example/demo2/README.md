@@ -40,6 +40,18 @@ ArchUnit ist eine Java-Bibliothek, die statische Analyse ermöglicht. Wir könne
    - **Test:** `noCyclicDependenciesBetweenPackages`
    - **Beschreibung:** Prüft, ob keine zyklischen Abhängigkeiten in `com.example.demo2` bestehen.
 
+5. **Controller sollen nur andere Schichten verwenden:**
+   - **Test:** `controllersShouldOnlyUseOtherLayers`
+   - **Beschreibung:** Prüft, ob `@Controller`-Klassen nur von bestimmten Paketen abhängen (`java..`, `org.springframework..`, `com.example.demo2.domain..`, `com.example.demo2.repository..`).
+
+6. **Repositories sollen nur andere Schichten verwenden:**
+   - **Test:** `repositoriesShouldOnlyUseOtherLayers`
+   - **Beschreibung:** Prüft, ob `@Repository`-Klassen nur von bestimmten Paketen abhängen (`java..`, `org.springframework..`, `com.example.demo2.domain..`).
+
+7. **Domain-Klassen sollen nur andere Schichten verwenden:**
+   - **Test:** `domainClassesShouldOnlyUseOtherLayers`
+   - **Beschreibung:** Prüft, ob `@Entity`-Klassen nur von bestimmten Paketen abhängen (`java..`, `jakarta..`, `com.example.demo2.domain..`).
+
 ## Fazit
 ArchUnit unterstützt unser Team durch:
 - Automatisierte Architektursicherung und Transparenz
@@ -61,3 +73,30 @@ Generiert durch [PlantUML-Generator Maven-Plugin](https://github.com/devlauer/pl
 PlantUML kann genutzt werden, um die Projektstruktur in UML-Diagramme zu visualisieren. Hierbei werden die Klassen, Repositories und Controllers in verschiedenen Paketen dargestellt. Die Architektur kann auch in einer einzelnen Datei gespeichert werden, um sie später in einem Projekt zu verwenden (architecture.puml).
 
 Zum Testen der Architektur würde ich davon absehen, da PlantUML-Dateien keine semantischen Informationen wie z.B. Spring Boot Annotationen enthält. Mit regulären ArchUnit-Tests kann die Architektur in hinsicht auf die Funktionsweise der Komponenten in der Codebase geprüft werden, mit PlantUML können bloß die Namen der Klassen und deren Pakete geprüft werden (was dem Sinn von Architektursicherung widerspricht).
+Mithilfe eines Postprocessors könnte die Architektur mit den Annotationen erweitert werden, ist aber unnütze Arbeit, da ArchUnit eh schon genutzt wird.
+
+Beispiel für PlantUML Entität mit Spring Boot Annotationen:
+```
+@startuml
+
+class com.example.demo2.domain.Users {
+    {field} +password : String
+    {field} -user_id : Integer
+    {field} -username : String
+    {method} +getId () : Integer
+    {method} +getName () : String
+    {method} +setId ( paramInteger1 : Integer ) : void
+    {method} +setName ( paramString1 : String ) : void
+}
+
+class com.example.demo2.repository.UserRepository {
+    {method}  {abstract} +save ( enitity : Users ) : void
+    {method}  {abstract} +findByUsername ( paramString1 : String ) : java.util.Optional
+}
+
+Users : << (E, #FF7700) Entity >>
+UserRepository : << (R, #00FF00) Repository >>
+
+UserRepository --> Users : manages
+@enduml
+```
