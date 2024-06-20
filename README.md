@@ -14,3 +14,5 @@
 -Vuex (State Management)<br>
 -Axios (HTTP Client)<br>
 
+### ArchUnit / PlantUML Evaluation
+[Hier](https://github.com/EricDirla/demo2/tree/master/src/test/java/com/example/demo2)
