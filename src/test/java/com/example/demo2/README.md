@@ -100,3 +100,19 @@ UserRepository : << (R, #00FF00) Repository >>
 UserRepository --> Users : manages
 @enduml
 ```
+
+#### Aktuell:
+
+1. Klassennamen werden aus PlantUML-Datei extrahiert
+   - Methode ```parsePumlFile()``` sucht nach Klassendeklarationen
+
+2.
+   - Klassen werden anhand von Stereotypen kategorisiert
+   - ```controller```, ```repositories``` oder ```entities```
+
+3. Prüfung der Klassenpositionen
+   - ```controllersShouldResideInControllerPackage```
+   - ```repositoriesShouldResideInRepositoryPackage```
+   - ```entitiesShouldResideInDomainPackage```
+
+ArchUnit prüft nur, ob die Klassen, so wie sie in der ```architecture.puml``` dargestellt sind, in den richtigen Paketen liegen. Es wird nicht geprüft, ob die Klassen tatsächlich die entsprechenden Spring-Annotationen haben, also ob sie tatsächlich Controller, Repositories oder Entitäten sind.
