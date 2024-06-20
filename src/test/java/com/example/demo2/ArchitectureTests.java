@@ -52,7 +52,8 @@ public class ArchitectureTests {
             .should().beFreeOfCycles()
             .check(importedClasses);
     }
-
+    
+    // Dependency Testing für Controller, Repositories und Entitäten
     @Test
     public void controllersShouldOnlyUseOtherLayers() {
         ArchRule rule = classes().that().areAnnotatedWith(Controller.class)
